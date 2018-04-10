@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+<div class="row">
+    {% block body %}
+    <h1>Nova Categoria</h1>
+    <br/>
+        <form class="" action="" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.nome.id_for_label }}">Nome:</label>
+                {{ form.nome }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.descricrao.id_for_label }}">Descrição:</label>
+                {{ form.descricrao }}
+            </div>
+            <div class="form-group">
+                <button type="submit" class = "btn btn-primary" >Salvar</button>
+            </div>
+        </form>
+    {% endblock body %}
+</div>
