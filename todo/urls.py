@@ -20,6 +20,6 @@ from tarefas import urls as tarefas_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', views.home, name = 'core'),
     path('tarefas/', include(tarefas_urls)),
 ]

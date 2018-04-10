@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body %}
+
+<div class="row">
+    <h1>Lista de Categorias</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Descrição</th>
+                <td>Ação</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in categorias %}
+                <tr>
+                    <td>{{c.nome}}</td>
+                    <td>{{c.descricrao}}</td>
+                    <td><a href="{% url 'tarefas:delete-categoria' c.id %}" class="btn btn-danger">Excluir</a></button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'tarefas:nova-categoria' %}" class="btn btn-primary" role="button">Nova Categoria</a>
+</div>
+
+{% endblock body %}
