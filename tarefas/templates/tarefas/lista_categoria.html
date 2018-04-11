@@ -8,7 +8,7 @@
             <tr>
                 <th>Categoria</th>
                 <th>Descrição</th>
-                <td>Ação</td>
+                <th colspan="2">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +16,8 @@
                 <tr>
                     <td>{{c.nome}}</td>
                     <td>{{c.descricrao}}</td>
-                    <td><a href="{% url 'tarefas:delete-categoria' c.id %}" class="btn btn-danger">Excluir</a></button></td>
+                    <td><a href="{% url 'tarefas:update-categoria' c.id %}" class="btn btn-success">Editar</a></td>
+                    <td><a href="{% url 'tarefas:delete-categoria' c.id %}" class="btn btn-danger">Excluir</a></td>
                 </tr>
             {% endfor %}
         </tbody>
