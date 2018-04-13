@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from django.http import HttpResponse
 from .models import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 ######## CATEGORIA ###########
 
+@login_required
 def nova_categoria(request):
     if request.method == 'POST':
         form = CategoriaForms(request.POST)
@@ -18,15 +20,15 @@ def nova_categoria(request):
         form = CategoriaForms()
 
     return render(request, 'tarefas/nova_categoria.html', {'form': form})
-
+@login_required
 def lista_categoria(request):
     categorias = Categoria.objects.all()
     return render(request, 'tarefas/lista_categoria.html', {'categorias': categorias})
-
+@login_required
 def delete_categoria(request, id):
     categoria = Categoria.objects.get(pk=id).delete()
     return redirect('tarefas:categoria')
-
+@login_required
 def update_categoria(request, id):
     categoria = Categoria.objects.get(pk=id)
     if request.method == 'POST':
@@ -39,11 +41,11 @@ def update_categoria(request, id):
         return render(request, 'tarefas/nova_categoria.html', {'form': form})
 
 ############ TAREFA ##############
-
+@login_required
 def lista_tarefa(request):
     tarefas = Tarefa.objects.all()
     return render(request, 'tarefas/lista_tarefa.html', {'tarefas': tarefas})
-
+@login_required
 def nova_tarefa(request):
     if request.method == 'POST':
         form = TarefaForms(request.POST)
@@ -55,11 +57,11 @@ def nova_tarefa(request):
     else:
         form = TarefaForms()
     return render(request, 'tarefas/nova_tarefa.html', {'form': form})
-
+@login_required
 def delete_tarefa(request, id):
     tarefa = Tarefa.objects.get(pk = id).delete()
     return redirect('tarefas:lista-tarefa')
-
+@login_required
 def update_tarefa(request, id):
     tarefa = Tarefa.objects.get(pk=id)
     if request.method == 'POST':

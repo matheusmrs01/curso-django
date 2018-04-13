@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from core import views
 from tarefas import urls as tarefas_urls
+from accounts import urls as accounts_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name = 'core'),
     path('tarefas/', include(tarefas_urls)),
+    path('accounts/', include(accounts_urls))
 ]

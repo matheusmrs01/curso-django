@@ -3,5 +3,6 @@
 {% block body %}
 
     <h1>Home do site</h1>
+    <h2>Bem-vindo {% if user.is_authenticated %}{{user.get_full_name}}{% endif %}</h2>
 
 {% endblock body %}

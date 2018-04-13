@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label for="{{ form.data_final.id_for_label }}">Data:</label>
-                {{ form.data_final|add_class:"form-control" }}
+                {% render_field form.data_final class="form-control" type="date" %}
             </div>
             <div class="form-group">
                 <label for="{{ form.prioridade.id_for_label }}">Prioridade:</label>
@@ -28,8 +28,9 @@
             </div>
             <div class="form-group">
                 <button type="submit" class = "btn btn-primary" >Salvar</button>
+                <a href="{% url 'tarefas:lista-tarefa' %}" class="btn btn-secondary" role="button">Lista Tarefa</a>
             </div>
         </form>
-        <a href="{% url 'tarefas:lista-tarefa' %}" class="btn btn-primary" role="button">Lista Tarefa</a>
+
     {% endblock body %}
 </div>
