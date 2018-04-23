@@ -4,9 +4,14 @@ from .models import *
 class CategoriaForms(forms.ModelForm):
     class Meta:
         model = Categoria
-        fields = '__all__'
+        exclude = ('user',)
 
 class TarefaForms(forms.ModelForm):
     class Meta:
         model = Tarefa
-        fields = '__all__'
+        exclude = ('user',)
+
+    def __init__(self, user=None, *args, **kwargs):
+        super(TarefaForms, self).__init__(*args, **kwargs)
+        if user is not None:
+            self.fields['categoria'].queryset = Categoria.objects.filter(user = user)

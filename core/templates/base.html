@@ -32,11 +32,17 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'tarefas:lista-tarefa' %}">Tarefa <span class="sr-only">(current)</span></a>
           </li>
+          <li>
+            <form class="form-inline" action="{% url 'tarefas:search' %}">
+              <input class="form-control mr-sm-2" name ="search" type="search" placeholder="Buscar" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+          </li>
         </ul>
       </div>
       <div class="btn-group dropleft">
         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {% if user.is_authenticated %}{{user.get_full_name}}{% endif %}
+          {% if user.is_authenticated %}{{user.get_full_name|default:user.username}}{% endif %}
         </button>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="{% url 'accounts:change-password' %}">Trocar Senha</a>

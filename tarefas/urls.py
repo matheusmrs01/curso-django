@@ -11,4 +11,6 @@ urlpatterns = [
     url('^lista-tarefa/$', views.lista_tarefa, name = 'lista-tarefa'),
     url('^delete-tarefa/(?P<id>[0-9]+)/$', views.delete_tarefa, name = 'delete-tarefa'),
     url('^update-tarefa/(?P<id>[0-9]+)/$', views.update_tarefa, name = 'update-tarefa'),
+    url('^detalhes-tarefa/(?P<id>[0-9]+)/$', views.detalhes_tarefa, name = 'detalhes-tarefa'),
+    url('^buscar/$', views.search, name = 'search'),
 ]

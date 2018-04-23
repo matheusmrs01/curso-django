@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div class="row">
     <h1>Lista de Categorias</h1>
+    {% if messages %}
+        {% for m in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{m}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if categorias %}
     <table class="table">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Categoria</th>
                 <th>Descrição</th>
                 <th colspan="2">Ações</th>
@@ -14,6 +22,7 @@
         <tbody>
             {% for c in categorias %}
                 <tr>
+                    <td>{{c.id}}</td>
                     <td>{{c.nome}}</td>
                     <td>{{c.descricrao}}</td>
                     <td><a href="{% url 'tarefas:update-categoria' c.id %}" class="btn btn-success">Editar</a></td>
@@ -22,7 +31,12 @@
             {% endfor %}
         </tbody>
     </table>
+    {% else %}
+        <div class="alert alert-info">
+            <p>Não há categorias cadastradas!</p>
+        </div>
+    {% endif %}
     <a href="{% url 'tarefas:nova-categoria' %}" class="btn btn-primary" role="button">Nova Categoria</a>
-</div>
+
 
 {% endblock body %}

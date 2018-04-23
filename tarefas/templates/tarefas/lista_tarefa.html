@@ -1,37 +1,48 @@
 {% extends "base.html" %}
 
 {% block body %}
-
-    <div class="row">
         <h1>Lista de Tarefas</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Data Final</th>
-                    <th>Prioridade</th>
-                    <th>Categoria</th>
-                    <th colspan="2">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for t in tarefas %}
+        {% if messages %}
+            {% for m in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{m}}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if tarefas %}
+
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{t.id}}</td>
-                        <td>{{t.nome}}</td>
-                        <td>{{t.descricrao}}</td>
-                        <td>{{t.data_final}}</td>
-                        <td>{{t.get_prioridade_display}}</td>
-                        <td>{{t.categoria}}</td>
-                        <td><a href="{% url 'tarefas:update-tarefa' t.id %}" class="btn btn-success">Editar</a></td>
-                        <td><a href="{% url 'tarefas:delete-tarefa' t.id %}" class="btn btn-danger">Excluir</a></td>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Data Final</th>
+                        <th>Prioridade</th>
+                        <th>Categoria</th>
+                        <th colspan="2">Ações</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for t in tarefas %}
+                        <tr>
+                            <td>{{t.id}}</td>
+                            <td>{{t.nome}}</td>
+                            <td>{{t.descricrao}}</td>
+                            <td>{{t.data_final}}</td>
+                            <td>{{t.get_prioridade_display}}</td>
+                            <td>{{t.categoria}}</td>
+                            <td><a href="{% url 'tarefas:update-tarefa' t.id %}" class="btn btn-success">Editar</a></td>
+                            <td><a href="{% url 'tarefas:delete-tarefa' t.id %}" class="btn btn-danger">Excluir</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div class="alert alert-info">
+                <p>Não há tarefas cadastradas!</p>
+            </div>
+        {% endif %}
         <a href="{% url 'tarefas:nova-tarefa' %}" class="btn btn-primary" role="button">Nova Tarefa</a>
-    </div>
 
 {% endblock body %}
