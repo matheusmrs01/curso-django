@@ -13,9 +13,10 @@ def add_user(request):
             u = form.save()
             u.set_password(u.password)
             u.save()
-            return HttpResponse('Usuario Criado!')
+            messages.success(request, 'Usuário criado com sucesso! Utilize o formulario abaixo para fazer login!')
+            return redirect('accounts:user-login')
         else:
-            print(form.errors)
+            messages.error(request, form.errors)
     else:
         form = UserForm()
     return render(request, 'accounts/user_add.html', {'form':form})

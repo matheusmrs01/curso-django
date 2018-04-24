@@ -23,6 +23,13 @@
 
       <form class="" action="" method="post">
         {% csrf_token %}
+        {% if messages %}
+          <div class="alert alert-danger" role="alert">
+              {% for m in messages %}
+                  {{ m }}
+              {% endfor %}
+          </div>
+        {% endif %}
         <div class="form-group">
           <label for="{{form.first_name.id_for_label}}">Nome</label>
           {{form.first_name|add_class:'form-control'}}
